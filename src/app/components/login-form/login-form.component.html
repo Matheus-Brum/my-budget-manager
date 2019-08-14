@@ -1,0 +1,20 @@
+<div style="display: flex; justify-content: center;">
+    <form class="form" (ngSubmit)="onSubmitLogin()">
+        <mat-form-field>
+            <input matInput [(ngModel)]="loginUsername" type="text" id="login_username" name="login_username" placeholder="Username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput [(ngModel)]="loginPassword" type="password" id="login_password" name="login_password" placeholder="Password">
+        </mat-form-field>
+        <button matInput mat-icon-button type="button"
+            (click)="togglePasswordVisibility('login_password'); 
+                togglePasswordVisibilityButton('loginPasswordVisibilityButton', loginPasswordVisibility);" 
+            id="loginPasswordVisibilityButton">
+            <mat-icon>{{ loginPasswordVisibility }}</mat-icon>     
+        </button>
+        <br>
+        <button matInput mat-raised-button type="submit">Login</button>
+        <button mat-raised-button type="reset">Clear</button>
+    </form>
+</div>

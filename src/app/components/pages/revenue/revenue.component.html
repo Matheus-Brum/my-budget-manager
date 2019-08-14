@@ -1,0 +1,72 @@
+<h1 style="text-align: center">My Revenue :</h1>
+
+<div *ngIf="!authenticationService.hasCookie(); else loggedIn">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Login">
+      <app-login-form #revenuePageLoginForm></app-login-form>
+    </mat-tab>
+    <mat-tab label="Sign in">
+      <app-signin-form></app-signin-form>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #loggedIn>
+  <button 
+    mat-icon-button 
+    (click)="openDialog()"
+  >
+    <mat-icon>add</mat-icon> Add a Revenue 
+  </button>
+  <br>
+  <mat-form-field>
+    <input 
+      matInput 
+      (keyup)="applyFilter($event.target.value)" 
+      placeholder="Search"
+    >
+  </mat-form-field>
+
+  <mat-table 
+    matSort 
+    [dataSource]="dataSource" 
+    class="mat-elevation-z8"
+  >
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let revenue">  </mat-cell>
+      <mat-footer-cell *matFooterCellDef> Total : </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let revenue"> {{ revenue.category }} </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let revenue"> {{ revenue.name }} </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let revenue"> {{ revenue.amount | currency }} </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{ revenueTotal | currency }} </mat-footer-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let revenue"><button mat-icon-button (click)="onDelete(revenue)"><mat-icon>delete</mat-icon></button></mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+    
+  </mat-table>
+  
+</ng-template>

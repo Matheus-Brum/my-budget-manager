@@ -1,0 +1,20 @@
+<div>
+    <h1 style="text-align: center">Home</h1>
+    <div *ngIf="!authenticationService.hasCookie(); else loggedIn">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Login">
+                <app-login-form></app-login-form>
+            </mat-tab>
+            <mat-tab label="Sign in">
+                <app-signin-form></app-signin-form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <ng-template #loggedIn>
+        <div>
+            <h2>{{ welcomeMessage }}</h2>    
+        </div>
+    </ng-template>
+
+</div>

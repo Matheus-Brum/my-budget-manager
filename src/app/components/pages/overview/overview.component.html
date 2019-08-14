@@ -1,0 +1,24 @@
+<h1 style="text-align: center">Overview</h1>
+<div *ngIf="!this.authenticationService.hasCookie(); else loggedIn">
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Login">
+      <app-login-form></app-login-form>
+    </mat-tab>
+    <mat-tab label="Sign in">
+      <app-signin-form></app-signin-form>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<ng-template #loggedIn>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Global">
+      <app-global-pie-chart></app-global-pie-chart>
+    </mat-tab>
+    <mat-tab label="Revenue">
+      <app-revenue-pie-chart></app-revenue-pie-chart>
+    </mat-tab>
+    <mat-tab label="Expenses">
+      <app-expenses-pie-chart></app-expenses-pie-chart>
+    </mat-tab>
+  </mat-tab-group>
+</ng-template>

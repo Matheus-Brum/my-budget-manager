@@ -1,0 +1,34 @@
+<mat-sidenav-container class="example-container" hasBackdrop="true">
+    <mat-sidenav #sidenav mode="side">
+      <mat-list role="list">
+        <mat-list-item role="listitem" routerLink="/"><mat-icon>home</mat-icon>Home</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/overview"><mat-icon>pie_chart</mat-icon>Overview</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/revenue"><mat-icon>attach_money</mat-icon>Revenue</mat-list-item>
+        <mat-list-item role="listitem" routerLink="/expense"><mat-icon>money_off</mat-icon>Expense</mat-list-item>
+      </mat-list> 
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button matInput mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        My Budget Manager
+        <span style="flex: 1 1 auto;"></span>
+        <div *ngIf="!authenticationService.hasCookie(); else loggedIn">
+          No Account
+        </div>
+        <ng-template #loggedIn>
+          <button matInput mat-mini-fab color="basic" [matMenuTriggerFor]="menu">{{ userIcon }}</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/account">My Account</button>
+            <button mat-menu-item (click)="authenticationService.logout()">Logout</button>
+          </mat-menu>
+        </ng-template>
+      </mat-toolbar>
+      <div style="margin-left: 10%; margin-right: 10%">
+          <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+  

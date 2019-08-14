@@ -1,0 +1,81 @@
+<div style="display: flex; justify-content: center;">
+    <form class="form" (ngSubmit)="onSubmitSignin()">
+        <mat-form-field>
+            <input 
+                matInput 
+                [formControl]="signinUsernameFormControl" 
+                [errorStateMatcher]="matcher" 
+                (keyup)="hasUsernameIconValue = 'youtube_searched_for'"
+                type="text" id="signin_username" name="signin_username" placeholder="Username"
+            >
+            <mat-error 
+                *ngIf="signinUsernameFormControl.hasError('minlength')"
+            >
+                Username must be at least 12 characters long
+            </mat-error>
+        </mat-form-field>
+        <button 
+            matInput
+            mat-icon-button
+            matTooltip="Check if Username already exists"
+            matTooltipPosition="right"
+            type="button"
+            id="username_exists"
+            (click)="hasUsername(signinUsernameFormControl.value)"
+        >
+            <mat-icon #hasUsernameIcon> {{ hasUsernameIconValue }} </mat-icon>
+        </button>
+        <br>
+        <mat-form-field>
+            <input 
+                matInput 
+                [formControl]="signinPasswordFormControl" 
+                [errorStateMatcher]="matcher" 
+                type="password" 
+                id="signin_password" 
+                name="signin_password" 
+                placeholder="Password"
+            >
+            <mat-error 
+                *ngIf="signinPasswordFormControl.hasError('minlength')"
+            >
+                Password must be at least 12 characters long
+            </mat-error>
+        </mat-form-field>
+        <button 
+            matInput 
+            mat-icon-button 
+            type="button"
+            (click)="togglePasswordVisibility('signin_password');
+                    togglePasswordVisibilityButton('signinPasswordVisibilityButton', signinPasswordVisibility);" 
+            id="signinPasswordVisibilityButton"
+        >
+            <mat-icon>{{ signinPasswordVisibility }}</mat-icon>     
+        </button>
+        <br>
+        <mat-form-field>
+            <input 
+                matInput 
+                (keyup)="onPasswordChange()" 
+                [(ngModel)]="signinConfirmPassword"  
+                type="password" 
+                id="signin_confirm_password" 
+                name="signin_confirm_password" 
+                placeholder="Confirm Password"
+            >
+        </mat-form-field>
+        <button 
+            matInput 
+            mat-icon-button 
+            type="button"
+            (click)="togglePasswordVisibility('signin_confirm_password');
+                    togglePasswordVisibilityButton('signinConfirmPasswordVisibilityButton', signinConfirmPasswordVisibility);" 
+            id="signinConfirmPasswordVisibilityButton"
+        >
+            <mat-icon>{{ signinConfirmPasswordVisibility }}</mat-icon>     
+        </button>
+        <br>
+        <button matInput mat-raised-button type="submit">Sign in</button>
+        <button mat-raised-button type="reset">Clear</button>
+    </form>
+</div>

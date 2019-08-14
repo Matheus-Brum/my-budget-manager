@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MyWhiskeyUI": {
+    "MyBudgetManager": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MyWhiskeyUI",
+            "outputPath": "dist/MyBudgetManager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MyWhiskeyUI:build"
+            "browserTarget": "MyBudgetManager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MyWhiskeyUI:build:production"
+              "browserTarget": "MyBudgetManager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MyWhiskeyUI:build"
+            "browserTarget": "MyBudgetManager:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MyWhiskeyUI:serve"
+            "devServerTarget": "MyBudgetManager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MyWhiskeyUI:serve:production"
+              "devServerTarget": "MyBudgetManager:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "MyWhiskeyUI"
+  "defaultProject": "MyBudgetManager"
 }
